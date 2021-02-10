@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>x86play</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+			integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+			crossorigin="anonymous" />
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.3/pako.min.js"
+			integrity="sha512-yJSo0YTQvvGOqL2au5eH0W4K/0FI0sTJuyHjiHkh0O31Lzlb814P0fDXtuEtzOj13lOBZ9j99BjqFx4ASz9pGA=="
+			crossorigin="anonymous"></script>
+		<script src="codemirror/lib/codemirror.js"></script>
+		<link rel="stylesheet" href="codemirror/lib/codemirror.css">
+		<link rel="stylesheet" href="codemirror/theme/material.css">
+		<link rel="stylesheet" href="darkmode.css">
+		<script language=javascript src="codemirror/mode/z80/z80.js"></script>
+		<script language=javascript src="xxd.js"></script>
+		<script language=javascript src="asm.js"></script>
+		<script language=javascript src="index.js"></script>
+		<script language=javascript src="execute.js"></script>
+	</head>
+	<body style="margin:0px 15px">
+		<div class="main" style="float:left; width:73%">
+		<font size="5">x86play
+			<button title="Run program" id="run" style="border:none; padding:8px 32px">
+				<font size="5" face="monospace">(▶)</font>
+			</button>
+			<button title="Copy Permalink to clipboard" id="permalink" style="border:none; padding:3px">
+				<font size="5" face="monospace">[ 🔗</font>
+			</button>
+			<font size="5" face="monospace">/</font>
+			<button title="Copy Markdown to clipboard" id="markdown" style="border:none; padding:3px">
+				<font size="5" face="monospace">&nbsp;M↓ ]</font>
+			</button>
+			<button title="debug" style="border:none">
+				<font size="5" face="monospace" color="#989898">[ dbg ]</font>
+			</button>
+		</font>
+		<div align="left">
+			<label><font face="monospace" size="4" id="collapse-code">▼ CODE FORMAT: </font>
+				<select id="code-format" name = "input-type" style="border:none">
+					<option type="radio" name="input-format" checked="checked" value="raw">Assembly</option>
+					<option type="radio" name="input-format" value="xxd">xxd</option>
+				</select>
+			</label>
+		</div>
+		<div id="codearea">
+			<div><font face="monospace">HINT:<span id="code-hint"></span></font></div>
+			<div align="right"><font face="monospace"><span id="length">0</span> bytes, <span id="assembled-length">0</span> bytes assembled&nbsp;</font></div>
+			<textarea id="code" rows="1"></textarea>
+		</div>
+		<br/>
+		<div align="left">
+			<label><font face="monospace" size="4" id="collapse-input">▼ INPUT FORMAT: </font>
+				<select id="input-format" name = "input-type" style="border:none">
+					<option type="radio" name="input-format" checked="checked" value="raw">raw bytes</option>
+					<option type="radio" name="input-format" value="xxd">xxd</option>
+				</select>
+			</label>
+		</div>
+		<div id="inputarea">
+			<textarea id="input" rows="1"></textarea>
+		</div>
+		<br/>
+		<div align="left"><b><font face="monospace" size="4" id="collapse-output">▼ OUTPUT ↓ </font></b></div>
+		<div id="outputarea">
+		<pre id="output" rows="1" style="white-space: pre-wrap;" border=0></pre>
+		</div>
+		</div>
+
+		<div class="sidebar" style="float:left; width:25%; margin:3px">
+		<font face="monospace">
+			Your program is a: <select id="code-type" style="border:none">
+					<option type="radio" name="input-format" checked="checked" value="function">Callable function</option>
+					<option type="radio" name="input-format" value="full">Full program</option>
+				</select>.
+				<hr/>
+			Welcome to x86play.<br/><br/>
+			x86play is a place where you can easily share x86-16 code snippets.<br/><br/>
+			Hint: Any clicks to the 🔗  or  M↓ icon will copy the link to the clipboard as well.<br/><br/>
+			This is a placeholder sidebar (for a quickref infobar)
+		</font>
+		</div>
+	</body>
