@@ -1,6 +1,7 @@
 function execute(byteList, RUN_METHOD = "") {
 	STDOUT = ""
 	output = document.getElementById("output")
+	output.innerText = ""
 	REGLUT = ['AX', 'CX', 'DX', 'BX', 'SP', 'BP', 'SI', 'DI']
 
 	// Firstly, convert byte List to bit stream.
@@ -40,11 +41,13 @@ function execute(byteList, RUN_METHOD = "") {
 			}
 			
 		}
-		if(RUN_METHOD)
-			output.innerText += "AX=" + REGS["AX"]
+		if(RUN_METHOD) {
+			output.innerText += "\n" + "AX=" + REGS["AX"]
 			                  + " BX=" + REGS["BX"]
 			                  + " CS=" + REGS["CS"]
-			                  + " IP=" + REGS["IP"] + "\n\n"
+			                  + " IP=" + REGS["IP"] + "\n"
+			
+		}
 		REGS["IP"] += WORD_LENGTH
 	}
 	if(!RUN_METHOD)
