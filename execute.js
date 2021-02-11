@@ -1,4 +1,5 @@
 function execute(byteList) {
+	STDOUT = ""
 	REGLUT = ['AX', 'CX', 'DX', 'BX', 'SP', 'BP', 'SI', 'DI']
 
 	// Firstly, convert byte List to bit stream.
@@ -42,4 +43,5 @@ function execute(byteList) {
 		}
 		REGS["IP"] += WORD_LENGTH
 	}
+	return STDOUT
 }
