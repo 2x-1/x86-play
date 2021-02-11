@@ -9,11 +9,12 @@ function analyze(args) {
 	})
 }
 
-function regEncode(w, reg) {
-	lookup = {"AX": "000","CX": "001",
+lookup = {"AX": "000","CX": "001",
 	          "DX": "010","BX": "011",
 	          "SP": "100","BP": "101",
 	          "SI": "110","DI": "111"}
+
+function regEncode(w, reg) {
 	if(w == "1") return lookup[reg]
 	else return null
 }
