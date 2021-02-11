@@ -1,5 +1,6 @@
-function execute(byteList) {
+function execute(byteList, RUN_METHOD = "") {
 	STDOUT = ""
+	output = document.getElementById("output")
 	REGLUT = ['AX', 'CX', 'DX', 'BX', 'SP', 'BP', 'SI', 'DI']
 
 	// Firstly, convert byte List to bit stream.
@@ -31,17 +32,21 @@ function execute(byteList) {
 			if(w == 1) {
 				// imm16 to register
 				WORD_LENGTH = 3;
-				console.log(memory.slice(RealCodeAddr+1, RealCodeAddr+3),REGLUT[parseInt(reg,2)])
 				REGS[REGLUT[parseInt(reg,2)]] = parseInt(memory.slice(RealCodeAddr+1, RealCodeAddr+3).join(""),2)
-				console.log(REGS)
 			}
-			else       {
+			else {
 				WORD_LENGTH = 2;
 				console.log(memory.slice(RealCodeAddr+1, RealCodeAddr+2))
 			}
 			
 		}
+		if(RUN_METHOD)
+			output.innerText += "AX=" + REGS["AX"]
+			                  + " BX=" + REGS["BX"]
+			                  + " CS=" + REGS["CS"]
+			                  + " IP=" + REGS["IP"] + "\n\n"
 		REGS["IP"] += WORD_LENGTH
 	}
-	return STDOUT
+	if(!RUN_METHOD)
+		return STDOUT
 }

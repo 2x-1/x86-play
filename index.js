@@ -128,6 +128,9 @@ window.onload = function() {
 	document.getElementById("run").addEventListener('click', (event) => {
 		output.innerHTML = execute(asm(code.value))
 	})
+	document.getElementById("debug").addEventListener('click', (event) => {
+		execute(asm(code.value), "debug")
+	})
 	document.getElementById("collapse-code").addEventListener('click', (event) => {
 		codearea = document.getElementById("codearea")
 		collapseCode = document.getElementById("collapse-code")
